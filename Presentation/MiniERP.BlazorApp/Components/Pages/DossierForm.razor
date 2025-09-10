@@ -1,0 +1,165 @@
+@page "/dossiers/create"
+@page "/dossiers/edit/{id:int}"
+@using MiniERP.BlazorApp.Models
+@using MiniERP.BlazorApp.Services
+@using System.ComponentModel.DataAnnotations
+@inject IDossierApiClient DossierApiClient
+@inject NavigationManager Navigation
+
+<PageTitle>@(Id > 0 ? "Modifier Dossier" : "Nouveau Dossier")</PageTitle>
+
+<h1>@(Id > 0 ? "Modifier Dossier" : "Nouveau Dossier")</h1>
+
+<div class="row">
+    <div class="col-md-8">
+        <EditForm Model="@dossierForm" OnValidSubmit="@HandleSubmit">
+            <DataAnnotationsValidator />
+            <ValidationSummary class="alert alert-danger" />
+
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label">Nom du Débiteur *</label>
+                                <InputText class="form-control" @bind-Value="dossierForm.NomDebiteur" />
+                                <ValidationMessage For="@(() => dossierForm.NomDebiteur)" />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label">Montant *</label>
+                                <InputNumber class="form-control" @bind-Value="dossierForm.Montant" />
+                                <ValidationMessage For="@(() => dossierForm.Montant)" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label">Date d'Audience *</label>
+                                <InputDate class="form-control" @bind-Value="dossierForm.DateAudience" />
+                                <ValidationMessage For="@(() => dossierForm.DateAudience)" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Notes</label>
+                        <InputTextArea class="form-control" rows="3" @bind-Value="dossierForm.Notes" />
+                        <ValidationMessage For="@(() => dossierForm.Notes)" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-3">
+                <button type="submit" class="btn btn-primary" disabled="@isSubmitting">
+                    @if (isSubmitting)
+                    {
+                        <span class="spinner-border spinner-border-sm" role="status"></span>
+                        @:Enregistrement...
+                    }
+                    else
+                    {
+                        <i class="fas fa-save"></i>
+                        @:Enregistrer
+                    }
+                </button>
+                <a href="/dossiers" class="btn btn-secondary ms-2">
+                    <i class="fas fa-times"></i> Annuler
+                </a>
+            </div>
+        </EditForm>
+    </div>
+</div>
+
+@code {
+    [Parameter] public int Id { get; set; }
+
+    private DossierFormModel dossierForm = new();
+    private bool isSubmitting = false;
+
+    protected override async Task OnParametersSetAsync()
+    {
+        if (Id > 0)
+        {
+            var dossier = await DossierApiClient.GetByIdAsync(Id);
+            if (dossier != null)
+            {
+                dossierForm = new DossierFormModel
+                {
+                    NomDebiteur = dossier.NomDebiteur,
+                    Montant = dossier.Montant,
+                    DateAudience = dossier.DateAudience,
+                    Notes = dossier.Notes
+                };
+            }
+        }
+        else
+        {
+            dossierForm = new DossierFormModel
+            {
+                DateAudience = DateTime.Now.AddDays(30)
+            };
+        }
+    }
+
+    private async Task HandleSubmit()
+    {
+        isSubmitting = true;
+        try
+        {
+            if (Id > 0)
+            {
+                var updateDto = new UpdateDossierDto
+                {
+                    Id = Id,
+                    NomDebiteur = dossierForm.NomDebiteur,
+                    Montant = dossierForm.Montant,
+                    DateAudience = dossierForm.DateAudience,
+                    Notes = dossierForm.Notes
+                };
+                await DossierApiClient.UpdateAsync(Id, updateDto);
+            }
+            else
+            {
+                var createDto = new CreateDossierDto
+                {
+                    NomDebiteur = dossierForm.NomDebiteur,
+                    Montant = dossierForm.Montant,
+                    DateAudience = dossierForm.DateAudience,
+                    Notes = dossierForm.Notes
+                };
+                await DossierApiClient.CreateAsync(createDto);
+            }
+
+            Navigation.NavigateTo("/dossiers");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Erreur: {ex.Message}");
+        }
+        finally
+        {
+            isSubmitting = false;
+        }
+    }
+
+    public class DossierFormModel
+    {
+        [Required(ErrorMessage = "Le nom du débiteur est obligatoire")]
+        [StringLength(200, ErrorMessage = "Le nom ne peut pas dépasser 200 caractères")]
+        public string NomDebiteur { get; set; } = string.Empty;
+
+        [Required(ErrorMessage = "Le montant est obligatoire")]
+        [Range(0.01, double.MaxValue, ErrorMessage = "Le montant doit être positif")]
+        public decimal Montant { get; set; }
+
+        [Required(ErrorMessage = "La date d'audience est obligatoire")]
+        public DateTime DateAudience { get; set; } = DateTime.Now.AddDays(30);
+
+        [StringLength(1000, ErrorMessage = "Les notes ne peuvent pas dépasser 1000 caractères")]
+        public string? Notes { get; set; }
+    }
+}

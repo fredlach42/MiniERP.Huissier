@@ -1,0 +1,74 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.2.0
+MinimumVisualStudioVersion = 10.0.40219.1
+
+# Domain Layer (Pure Business Logic)
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiniERP.Domain", "Domain\MiniERP.Domain.csproj", "{B1E5C3F0-4D2A-4A5B-8F7E-1A2B3C4D5E6F}"
+EndProject
+
+# Application Layer (Use Cases & Orchestration)
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiniERP.Application", "Application\MiniERP.Application.csproj", "{C2F6D4E1-5E3B-4B6C-9E8F-2B3C4D5E6F70}"
+EndProject
+
+# Infrastructure Layer (External Concerns)
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiniERP.Infrastructure", "Infrastructure\MiniERP.Infrastructure\MiniERP.Infrastructure.csproj", "{D3E7F5E2-6F4C-4C7D-AF90-3C4D5E6F7081}"
+EndProject
+
+# Presentation Layer
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiniERP.WebApi", "Presentation\MiniERP.WebApi\MiniERP.WebApi.csproj", "{E4F8E6F3-7E5D-4D8E-BEA1-4D5E6F708192}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiniERP.BlazorApp", "Presentation\MiniERP.BlazorApp\MiniERP.BlazorApp.csproj", "{F5E9F7E4-8F6E-4E9F-CEA2-5E6F7081A2A3}"
+EndProject
+
+# Clean Architecture Solution Folders
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{10000000-0000-0000-0000-000000000001}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{10000000-0000-0000-0000-000000000002}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{10000000-0000-0000-0000-000000000003}"
+EndProject  
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{10000000-0000-0000-0000-000000000004}"
+EndProject
+
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B1E5C3F0-4D2A-4A5B-8F7E-1A2B3C4D5E6F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1E5C3F0-4D2A-4A5B-8F7E-1A2B3C4D5E6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1E5C3F0-4D2A-4A5B-8F7E-1A2B3C4D5E6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1E5C3F0-4D2A-4A5B-8F7E-1A2B3C4D5E6F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C2F6D4E1-5E3B-4B6C-9E8F-2B3C4D5E6F70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2F6D4E1-5E3B-4B6C-9E8F-2B3C4D5E6F70}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2F6D4E1-5E3B-4B6C-9E8F-2B3C4D5E6F70}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2F6D4E1-5E3B-4B6C-9E8F-2B3C4D5E6F70}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D3E7F5E2-6F4C-4C7D-AF90-3C4D5E6F7081}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3E7F5E2-6F4C-4C7D-AF90-3C4D5E6F7081}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3E7F5E2-6F4C-4C7D-AF90-3C4D5E6F7081}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3E7F5E2-6F4C-4C7D-AF90-3C4D5E6F7081}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E4F8E6F3-7E5D-4D8E-BEA1-4D5E6F708192}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4F8E6F3-7E5D-4D8E-BEA1-4D5E6F708192}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4F8E6F3-7E5D-4D8E-BEA1-4D5E6F708192}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4F8E6F3-7E5D-4D8E-BEA1-4D5E6F708192}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5E9F7E4-8F6E-4E9F-CEA2-5E6F7081A2A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5E9F7E4-8F6E-4E9F-CEA2-5E6F7081A2A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5E9F7E4-8F6E-4E9F-CEA2-5E6F7081A2A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5E9F7E4-8F6E-4E9F-CEA2-5E6F7081A2A3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B1E5C3F0-4D2A-4A5B-8F7E-1A2B3C4D5E6F} = {10000000-0000-0000-0000-000000000001}
+		{C2F6D4E1-5E3B-4B6C-9E8F-2B3C4D5E6F70} = {10000000-0000-0000-0000-000000000002}
+		{D3E7F5E2-6F4C-4C7D-AF90-3C4D5E6F7081} = {10000000-0000-0000-0000-000000000003}
+		{E4F8E6F3-7E5D-4D8E-BEA1-4D5E6F708192} = {10000000-0000-0000-0000-000000000004}
+		{F5E9F7E4-8F6E-4E9F-CEA2-5E6F7081A2A3} = {10000000-0000-0000-0000-000000000004}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6CAB8C7E-FFCB-45FA-BBFD-AD74F47B3DDB}
+	EndGlobalSection
+EndGlobal

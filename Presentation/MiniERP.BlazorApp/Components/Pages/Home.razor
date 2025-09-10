@@ -1,0 +1,112 @@
+﻿@page "/"
+
+<PageTitle>Mini ERP Huissier</PageTitle>
+
+<div class="hero-section mb-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-8">
+                <h1 class="display-4 fw-bold text-primary">Mini ERP Huissier</h1>
+                <p class="lead">
+                    Système de gestion simplifié pour les dossiers d'huissier. 
+                    Gérez efficacement vos dossiers, suivez leur statut et optimisez votre workflow.
+                </p>
+                <div class="d-flex gap-3">
+                    <a href="/dossiers" class="btn btn-primary btn-lg">
+                        <i class="fas fa-folder-open me-2"></i>
+                        Voir les dossiers
+                    </a>
+                    <a href="/dossiers/create" class="btn btn-outline-primary btn-lg">
+                        <i class="fas fa-plus me-2"></i>
+                        Nouveau dossier
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-4 text-center">
+                <i class="fas fa-gavel text-primary" style="font-size: 8rem; opacity: 0.1;"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <div class="d-flex align-items-center mb-3">
+                        <i class="fas fa-folder text-primary me-3" style="font-size: 2rem;"></i>
+                        <h5 class="card-title mb-0">Gestion des Dossiers</h5>
+                    </div>
+                    <p class="card-text">
+                        Créez, modifiez et suivez vos dossiers d'huissier avec une interface intuitive.
+                        Gérez les informations des débiteurs, montants et dates d'audience.
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <div class="d-flex align-items-center mb-3">
+                        <i class="fas fa-tasks text-success me-3" style="font-size: 2rem;"></i>
+                        <h5 class="card-title mb-0">Workflow Statuts</h5>
+                    </div>
+                    <p class="card-text">
+                        Suivez l'évolution de vos dossiers : Ouvert, En Cours, Suspendu, Clôturé, Annulé.
+                        Workflow simplifié pour une gestion efficace.
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <div class="d-flex align-items-center mb-3">
+                        <i class="fas fa-search text-info me-3" style="font-size: 2rem;"></i>
+                        <h5 class="card-title mb-0">Recherche & Filtrage</h5>
+                    </div>
+                    <p class="card-text">
+                        Recherchez rapidement dans vos dossiers par nom de débiteur ou notes.
+                        Filtrez par statut pour une vue ciblée de votre activité.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .hero-section {
+        background: linear-gradient(135deg, #f8f9fa 0%, #e3f2fd 100%);
+        padding: 4rem 0;
+        margin-top: -2rem;
+        margin-left: -2rem;
+        margin-right: -2rem;
+    }
+
+    .card {
+        transition: transform 0.2s ease-in-out;
+        border: none;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+    }
+
+    .display-4 {
+        font-size: 3rem;
+    }
+
+    @@media (max-width: 768px) {
+        .hero-section {
+            padding: 2rem 0;
+        }
+        
+        .display-4 {
+            font-size: 2rem;
+        }
+    }
+</style>
