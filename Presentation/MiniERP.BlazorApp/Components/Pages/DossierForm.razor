@@ -12,7 +12,7 @@
 
 <div class="row">
     <div class="col-md-8">
-        <EditForm Model="@dossierForm" OnValidSubmit="@HandleSubmit">
+        <EditForm Model="@dossierForm" OnValidSubmit="@HandleSubmit" FormName="dossierForm">
             <DataAnnotationsValidator />
             <ValidationSummary class="alert alert-danger" />
 

@@ -4,7 +4,7 @@ using MiniERP.BlazorApp.Services;
 var builder = WebApplication.CreateBuilder(args);
 
 // Configuration API pour Clean Architecture
-var apiBaseUrl = builder.Configuration["Api:BaseUrl"] ?? "https://localhost:7001/api/";
+var apiBaseUrl = builder.Configuration["Api:BaseUrl"] ?? "http://localhost:5079/api/";
 builder.Services.AddHttpClient<IDossierApiClient, DossierApiClient>(client =>
 {
     client.BaseAddress = new Uri(apiBaseUrl);
